@@ -1,5 +1,7 @@
 set nocompatible
 syntax enable
+syntax on
+filetype off
 set encoding=utf-8
 
 set rtp+=~/.vim/bundle/vundle/
@@ -11,9 +13,7 @@ Bundle 'gmarik/vundle'
 
 " All bundled plugins
 Bundle 'kien/ctrlp.vim'
-Bundle 'mileszs/ack.vim'
 Bundle 'vim-ruby/vim-ruby'
-Bundle 'scrooloose/nerdtree'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-endwise'
@@ -23,13 +23,21 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-surround'
+Bundle 'sukima/xmledit'
+Bundle 'msanders/snipmate.vim'
 Bundle 'tpope/vim-cucumber'
 Bundle 'godlygeek/tabular'
 Bundle 'pangloss/vim-javascript'
 Bundle 'vim-scripts/peaksea'
+Bundle 'rking/ag.vim'
 
 filetype plugin indent on
+filetype plugin on
 runtime macros/matchit.vim
+
+if !empty($MY_RUBY_HOME)
+ let g:ruby_path = join(split(glob($MY_RUBY_HOME.'/lib/ruby/*.*')."\n".glob($MY_RUBY_HOME.'/lib/ruby/site_ruby/*'),"\n"),',')
+endif
 
 set background=dark
 color peaksea
@@ -81,6 +89,8 @@ if has("autocmd")
 
   " Treat JSON files like JavaScript
   au BufNewFile,BufRead *.json set ft=javascript
+  
+  au BufNewFile,BufRead *.coffee set filetype=coffee
 
   " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
   au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
@@ -108,27 +118,12 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-  \ 'file': '\.exe$\|\.so$\|\.dll$\|\.log$' }
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public$\|log\|tmp$',
+  \ 'file': '\.exe$\|\.so$\|\.dll$\|\.log$\|\.dat$\|\.DS_Store$\|\.csv$' }
 
 " ignore Rubinius, Sass cache files, and others
 set wildignore+=tmp/**,*.rbc,.rbx,*.scssc,*.sassc
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip  " MacOSX/Linux
-
-" nerdtree options
-map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-map <leader>e :NERDTreeFind<CR>
-nmap <leader>nt :NERDTreeFind<CR>
-
-let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=1
-let NERDTreeShowHidden=1
-let NERDTreeKeepTreeInNewTab=1
-
-" close nerdtree if it's the only window left open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 nnoremap <leader><leader> <c-^>
 
@@ -162,3 +157,12 @@ if has("statusline") && !&cp
   set statusline+=%=%-14.(%l,%c%V%)\ %p%%     " Right aligned file nav info
   
 endif
+
+let mapleader=','
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+
+" Ag
+let g:ackprg = 'ag --nogroup --nocolor --column'
