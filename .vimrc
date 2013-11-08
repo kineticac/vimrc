@@ -25,9 +25,9 @@ Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-surround'
 Bundle 'sukima/xmledit'
 Bundle 'msanders/snipmate.vim'
-Bundle 'tpope/vim-cucumber'
 Bundle 'godlygeek/tabular'
 Bundle 'pangloss/vim-javascript'
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'vim-scripts/peaksea'
 Bundle 'rking/ag.vim'
 
@@ -39,8 +39,11 @@ if !empty($MY_RUBY_HOME)
  let g:ruby_path = join(split(glob($MY_RUBY_HOME.'/lib/ruby/*.*')."\n".glob($MY_RUBY_HOME.'/lib/ruby/site_ruby/*'),"\n"),',')
 endif
 
-set background=dark
-color peaksea
+" Colorscheme
+let g:solarized_termcolors=256
+set background=light
+colorscheme solarized
+
 set nonumber
 set ruler       " show the cursor position all the time
 set cursorline
@@ -166,3 +169,4 @@ vmap <Leader>a: :Tabularize /:\zs<CR>
 
 " Ag
 let g:ackprg = 'ag --nogroup --nocolor --column'
+
