@@ -27,8 +27,7 @@ Bundle 'sukima/xmledit'
 Bundle 'msanders/snipmate.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'pangloss/vim-javascript'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'vim-scripts/peaksea'
+Bundle '29decibel/codeschool-vim-theme'
 Bundle 'rking/ag.vim'
 
 filetype plugin indent on
@@ -40,9 +39,8 @@ if !empty($MY_RUBY_HOME)
 endif
 
 " Colorscheme
-let g:solarized_termcolors=256
-set background=light
-colorscheme solarized
+set background=dark
+colorscheme codeschool
 
 set nonumber
 set ruler       " show the cursor position all the time
