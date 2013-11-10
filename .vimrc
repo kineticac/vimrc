@@ -30,6 +30,9 @@ Bundle 'pangloss/vim-javascript'
 Bundle '29decibel/codeschool-vim-theme'
 Bundle 'rking/ag.vim'
 
+" move through camelcase and underscores
+Bundle 'bkad/CamelCaseMotion'
+
 filetype plugin indent on
 filetype plugin on
 runtime macros/matchit.vim
@@ -168,3 +171,7 @@ vmap <Leader>a: :Tabularize /:\zs<CR>
 " Ag
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
+" CamelCaseMotion
+map w <Plug>CamelCaseMotion_w
+map b <Plug>CamelCaseMotion_b
+map e <Plug>CamelCaseMotion_e
