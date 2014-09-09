@@ -4,7 +4,7 @@ syntax on
 filetype off
 set encoding=utf-8
 
-set rtp+=~/.vim/bundle/vundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle
@@ -125,7 +125,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public$\|log\|tmp$',
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|log\|tmp$',
   \ 'file': '\.exe$\|\.so$\|\.dll$\|\.log$\|\.dat$\|\.DS_Store$\|\.csv$' }
 
 " ignore Rubinius, Sass cache files, and others
